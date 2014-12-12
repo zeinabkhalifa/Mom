@@ -1,0 +1,60 @@
+from django.shortcuts import render
+
+
+
+@csrf_exempt
+def auth_view(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        if user is not None: 
+            auth.login(request, user)
+            # go to next step
+            
+            response = render(request,'',{"posters":posters})
+            return response
+        else: 
+            return HttpResponseForbidden(\
+                                         content="Invalid login.")
+
+
+
+def loggedin(request):
+        if (request.user.is_authenticated()):
+                print "user"
+                full_name = request.user.username
+        else:
+                print "guest"
+                full_name = "guest"
+        return render_to_response('webgallery/index.html',
+                                          {'full_name': full_name})
+
+
+
+# registration
+@csrf_exempt
+def index(request):
+    return HttpResponse('This is main')
+
+
+def login(request):
+        if (request.user.is_authenticated()):
+                
+                response = 
+                
+                return HttpResponse(response)
+        else:
+                return HttpResponse('NULL')
+def invalid_login(request):
+        return HttpResponse('invalid_login')
+
+def logout(request):
+        auth.logout(request)
+        return HttpResponse('logout_successful')
+
+def submit(request):
+        
+
+
+
